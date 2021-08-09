@@ -37,3 +37,16 @@
 - Genarate blocks throw functions
   </p>
   </details>
+
+<details>
+  <summary>
+    <b>#4.3 Singleton Pattern</b>
+  </summary>
+  <p>
+
+### Summary
+
+- Refactoring to separated module
+- What is Singleton Pattern
+</p>
+  </details>
