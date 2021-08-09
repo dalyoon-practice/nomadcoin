@@ -22,5 +22,18 @@
 - What is hash
 - Generate genesis block with SHA256
 
-  </p>
+</p>
 </details>
+
+<details>
+  <summary>
+    <b>#4.2 Our First Blockchain</b>
+  </summary>
+  <p>
+
+### Summary
+
+- Make blocks as chain
+- Genarate blocks throw functions
+  </p>
+  </details>
