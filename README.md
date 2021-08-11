@@ -34,7 +34,7 @@
 ### Summary
 
 - Make blocks as chain
-- Genarate blocks throw functions
+- Genarate blocks through functions
   </p>
   </details>
 
@@ -47,6 +47,19 @@
 ### Summary
 
 - Refactoring to separated module
-- What is Singleton Pattern
+- What is singleton pattern
 </p>
   </details>
+
+<details>
+  <summary>
+    <b>#4.4 Refactoring part One</b>
+  </summary>
+  <p>
+
+### Summary
+
+- What is [sync.Once.Do](https://pkg.go.dev/sync@go1.16.7#Once.Do)
+- Reactor codes to apply singleton pattern
+</p>
+      </details>
