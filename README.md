@@ -61,5 +61,18 @@
 
 - What is [sync.Once.Do](https://pkg.go.dev/sync@go1.16.7#Once.Do)
 - Reactor codes to apply singleton pattern
+  </p>
+        </details>
+
+        <details>
+
+    <summary>
+      <b>#4.5 Refactoring part Two</b>
+    </summary>
+    <p>
+
+### Summary
+
+- Continuing refactoring
 </p>
       </details>
