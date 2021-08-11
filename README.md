@@ -10,6 +10,8 @@
 
 ## Notes
 
+### - Section 4 -
+
 <details>
   <summary>
     <b>#4.1 Our First Block</b>
@@ -21,8 +23,7 @@
 - What is one-way-function
 - What is hash
 - Generate genesis block with SHA256
-
-</p>
+  </p>
 </details>
 
 <details>
@@ -36,7 +37,7 @@
 - Make blocks as chain
 - Genarate blocks through functions
   </p>
-  </details>
+</details>
 
 <details>
   <summary>
@@ -48,8 +49,8 @@
 
 - Refactoring to separated module
 - What is singleton pattern
-</p>
-  </details>
+  </p>
+</details>
 
 <details>
   <summary>
@@ -62,17 +63,30 @@
 - What is [sync.Once.Do](https://pkg.go.dev/sync@go1.16.7#Once.Do)
 - Reactor codes to apply singleton pattern
   </p>
-        </details>
+  </details>
 
-        <details>
+    <details>
+      <summary>
+        <b>#4.5 Refactoring part Two</b>
+      </summary>
+      <p>
 
+### Summary
+
+- Continuing refactoring
+    </p>
+  </details>
+
+### - Section 5 -
+
+  <details>
     <summary>
-      <b>#4.5 Refactoring part Two</b>
+      <b>#5.0 Setup</b>
     </summary>
     <p>
 
 ### Summary
 
-- Continuing refactoring
-</p>
-      </details>
+- Basic Setting for web server
+    </p>
+  </details>
