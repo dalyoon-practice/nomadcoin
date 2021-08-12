@@ -12,81 +12,81 @@
 
 ### - Section 4 -
 
-<details>
-  <summary>
-    <b>#4.1 Our First Block</b>
-  </summary>
-  <p>
-
-### Summary
+<!-- 4.1 -->
+<details><summary>#4.1 Our First Block</summary>
 
 - What is one-way-function
 - What is hash
 - Generate genesis block with SHA256
-  </p>
+
 </details>
 
-<details>
-  <summary>
-    <b>#4.2 Our First Blockchain</b>
-  </summary>
-  <p>
-
-### Summary
-
+<!-- 4.2 -->
+<details><summary>#4.2 Our First Blockchain</summary>
+  
 - Make blocks as chain
 - Genarate blocks through functions
-  </p>
+
 </details>
 
-<details>
-  <summary>
-    <b>#4.3 Singleton Pattern</b>
-  </summary>
-  <p>
-
-### Summary
+<!-- 4.3 -->
+<details><summary>#4.3 Singleton Pattern</summary>
 
 - Refactoring to separated module
 - What is singleton pattern
-  </p>
+
 </details>
 
-<details>
-  <summary>
-    <b>#4.4 Refactoring part One</b>
-  </summary>
-  <p>
-
-### Summary
+<!-- 4.4 -->
+<details><summary>#4.4 Refactoring part One</summary>
 
 - What is [sync.Once.Do](https://pkg.go.dev/sync@go1.16.7#Once.Do)
 - Reactor codes to apply singleton pattern
-  </p>
-  </details>
 
-    <details>
-      <summary>
-        <b>#4.5 Refactoring part Two</b>
-      </summary>
-      <p>
+</details>
 
-### Summary
+<!-- 4.5 -->
+<details><summary>#4.5 Refactoring part Two</summary>
 
 - Continuing refactoring
-    </p>
-  </details>
+
+</details>
 
 ### - Section 5 -
 
-  <details>
-    <summary>
-      <b>#5.0 Setup</b>
-    </summary>
-    <p>
-
-### Summary
+<!-- 5.0 -->
+<details><summary>#5.0 Setup</summary>
 
 - Basic Setting for web server
-    </p>
-  </details>
+
+```go
+// Simple Example
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+const port string = ":4000"
+
+func home(rw http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(rw, "Hello World!")
+}
+
+func main() {
+	http.HandleFunc("/", home)
+	fmt.Printf("Server listening on port http://localhost%s\n", port)
+	http.ListenAndServe(port, nil)
+}
+
+```
+
+</details>
+
+<!-- 5.1 -->
+<details><summary>#5.1 Rendering Templates</summary>
+
+- How to use HTML template on go server
+
+</details>
