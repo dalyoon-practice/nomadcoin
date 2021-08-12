@@ -60,6 +60,7 @@
 - Basic Setting for web server
 
 ```go
+// Simple Example
 package main
 
 import (
@@ -86,6 +87,6 @@ func main() {
 <!-- 5.1 -->
 <details><summary>#5.1 Rendering Templates</summary>
 
-- Basic Setting for web server
+- How to use HTML template on go server
 
 </details>
