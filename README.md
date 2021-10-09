@@ -90,3 +90,10 @@ func main() {
 - How to use HTML template on go server
 
 </details>
+
+<!-- 5.2 -->
+<details><summary>#5.2 Rendering Blocks</summary>
+
+- Add
+
+</details>
