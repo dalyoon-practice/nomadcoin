@@ -90,3 +90,10 @@ func main() {
 - How to use HTML template on go server
 
 </details>
+
+<!-- Section 6 -->
+<details><summary><b>Section 6: RestAPI</b></summary>
+
+-
+
+</details>
