@@ -1,7 +1,9 @@
 package main
 
-import "github.com/dalyoon-practice/nomadcoin/explorer"
+import (
+	"github.com/dalyoon-practice/nomadcoin/rest"
+)
 
 func main() {
-	explorer.Start()
+	rest.Start(4000)
 }
