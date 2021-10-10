@@ -91,9 +91,13 @@ func main() {
 
 </details>
 
-<!-- 5.2 -->
-<details><summary>#5.2 Rendering Blocks</summary>
+<!-- Section 6 -->
+<details><summary><b>Section 6: RestAPI</b></summary>
 
-- Add
+- [Json](https://pkg.go.dev/encoding/json) in GO
+- What is [Stringer](https://pkg.go.dev/golang.org/x/tools/cmd/stringer)
+- [Json - Marshal](https://pkg.go.dev/encoding/json#Marshal)
+- [Encoding - TextMarshaler](https://pkg.go.dev/encoding#TextMarshaler)
+- [http-mux](https://pkg.go.dev/net/http#NewServeMux)
 
 </details>
