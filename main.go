@@ -1,9 +1,11 @@
 package main
 
 import (
-	"github.com/dalyoon-practice/nomadcoin/rest"
+	"github.com/dalyoon-practice/nomadcoin/cli"
+	"github.com/dalyoon-practice/nomadcoin/db"
 )
 
 func main() {
-	rest.Start(4000)
+	defer db.Close()
+	cli.Start()
 }
