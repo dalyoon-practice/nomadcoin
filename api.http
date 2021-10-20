@@ -1,5 +1,7 @@
 http://localhost:4000/
 ###
+http://localhost:4000/status
+###
 http://localhost:4000/blocks
 ###
 http://localhost:4000/blocks/5
@@ -8,5 +10,5 @@ POST http://localhost:4000/blocks
 Content-Type: application/json
 
 {
-  "message": "Test Data"
+  "message": "Mine me!"
 }

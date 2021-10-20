@@ -88,11 +88,16 @@ func jsonHeaderMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+func status(rw http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(rw).Encode(blockchain.Blockchain())
+}
+
 func Start(aPort int) {
 	port = fmt.Sprintf(":%d", aPort)
 	router := mux.NewRouter()
 	router.Use(jsonHeaderMiddleware)
 	router.HandleFunc("/", document).Methods("GET")
+	router.HandleFunc("/status", status).Methods("GET")
 	router.HandleFunc("/blocks", blocks).Methods("GET", "POST")
 	router.HandleFunc("/blocks/{hash:[a-f0-9]+}", block).Methods("GET")
 	fmt.Printf("Listening on http://localhost%s\n", port)
