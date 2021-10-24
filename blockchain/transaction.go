@@ -5,10 +5,12 @@ import (
 	"time"
 
 	"github.com/dalyoon-practice/nomadcoin/utils"
+	"github.com/dalyoon-practice/nomadcoin/wallet"
 )
 
 const (
-	minerReward int = 50
+	minerReward       int    = 50
+	coinbaseSignature string = "COINBASE"
 )
 
 type mempool struct {
@@ -16,6 +18,8 @@ type mempool struct {
 }
 
 var Mempool *mempool = &mempool{}
+var ErrNoMoney = errors.New("not enough money")
+var ErrInvalidTx = errors.New("tx invalid")
 
 type Tx struct {
 	ID        string   `json:"id"`
@@ -24,25 +28,49 @@ type Tx struct {
 	TxOuts    []*TxOut `json:"txOuts"`
 }
 
-func (t *Tx) getId() {
-	t.ID = utils.Hash(t)
-}
-
 type TxIn struct {
-	TxID  string `json:"txId"`
-	Index int    `json:"index"`
-	Owner string `json:"owner"`
+	TxID      string `json:"txId"`
+	Index     int    `json:"index"`
+	Signature string `json:"signature"`
 }
 
 type TxOut struct {
-	Owner  string `json:"owner"`
-	Amount int    `json:"amount"`
+	Address string `json:"address"`
+	Amount  int    `json:"amount"`
 }
 
 type UTxOut struct {
 	TxID   string
 	Index  int
 	Amount int
+}
+
+func (t *Tx) getId() {
+	t.ID = utils.Hash(t)
+}
+
+func (t *Tx) sign() {
+	for _, txIn := range t.TxIns {
+		txIn.Signature = wallet.Sign(t.ID, wallet.Wallet())
+	}
+}
+
+func validate(t *Tx) bool {
+	valid := true
+	for _, txIn := range t.TxIns {
+		prevTx := FindTx(Blockchain(), txIn.TxID)
+		if prevTx == nil {
+			valid = false
+			break
+		}
+
+		address := prevTx.TxOuts[txIn.Index].Address
+		valid = wallet.Verify(txIn.Signature, txIn.TxID, address)
+		if !valid {
+			break
+		}
+	}
+	return valid
 }
 
 func isOnMempool(uTxOut *UTxOut) bool {
@@ -61,7 +89,7 @@ Outer:
 
 func makeCoinbaseTx(address string) *Tx {
 	txIns := []*TxIn{
-		{"", -1, "COINBASE"},
+		{"", -1, coinbaseSignature},
 	}
 	txOuts := []*TxOut{
 		{address, minerReward},
@@ -78,7 +106,7 @@ func makeCoinbaseTx(address string) *Tx {
 
 func makeTx(from, to string, amount int) (*Tx, error) {
 	if BalanceByAddress(from, Blockchain()) < amount {
-		return nil, errors.New("not enough funds")
+		return nil, ErrNoMoney
 	}
 
 	var txOuts []*TxOut
@@ -110,11 +138,16 @@ func makeTx(from, to string, amount int) (*Tx, error) {
 		TxOuts:    txOuts,
 	}
 	tx.getId()
+	tx.sign()
+	valid := validate(tx)
+	if !valid {
+		return nil, ErrInvalidTx
+	}
 	return tx, nil
 }
 
 func (m *mempool) AddTx(to string, amount int) error {
-	tx, err := makeTx("dal", to, amount)
+	tx, err := makeTx(wallet.Wallet().Address, to, amount)
 	if err != nil {
 		return err
 	}
@@ -123,7 +156,7 @@ func (m *mempool) AddTx(to string, amount int) error {
 }
 
 func (m *mempool) txToConfirm() []*Tx {
-	coinbase := makeCoinbaseTx("dal")
+	coinbase := makeCoinbaseTx(wallet.Wallet().Address)
 	txs := m.Txs
 	txs = append(txs, coinbase)
 	m.Txs = nil
