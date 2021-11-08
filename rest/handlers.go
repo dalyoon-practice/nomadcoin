@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/dalyoon-practice/nomadcoin/blockchain"
+	"github.com/dalyoon-practice/nomadcoin/p2p"
 	"github.com/dalyoon-practice/nomadcoin/utils"
 	"github.com/dalyoon-practice/nomadcoin/wallet"
 	"github.com/gorilla/mux"
@@ -132,4 +133,21 @@ type myWalletResponse struct {
 func myWallet(rw http.ResponseWriter, r *http.Request) {
 	address := wallet.Wallet().Address
 	json.NewEncoder(rw).Encode(myWalletResponse{address})
+}
+
+// p2p
+type addPeerPayload struct {
+	Address, Port string
+}
+
+func peers(rw http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		json.NewEncoder(rw).Encode(p2p.Peers)
+	case "POST":
+		var payload addPeerPayload
+		json.NewDecoder(r.Body).Decode(&payload)
+		p2p.AddPeer(payload.Address, payload.Port, port)
+		rw.WriteHeader(http.StatusOK)
+	}
 }
